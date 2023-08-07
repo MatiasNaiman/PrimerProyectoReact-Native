@@ -1,21 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, ImageBackground, Image } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, TextInput, SafeAreaView, Pressable } from 'react-native';
 import FlatlistTragos from './src/components/FlatlistTragos';
 
-const FotoDeFondo = require('./assets/background/playita.jpg');
-const FotoDeFondo2 = require('./assets/background/betsson.png');
+const FotoDeFondo = require('./assets/playita.jpg');
+const FotoDeFondo2 = require('./assets/betsson.jpg');
 
 export default function App() {
+  const [trago, handleTragoChange] = useState('');
+
   return (
-    <View style={styles.container}>
-      <ImageBackground source={FotoDeFondo} resizeMode="cover" style={styles.backgroundImage}>
+    <ImageBackground source={FotoDeFondo} resizeMode="cover" style={styles.backgroundImage}>
+      <SafeAreaView style={styles.container}>
         <Text style={styles.titulo}>La tequileria del Furro:</Text>
-        <FlatlistTragos style={styles.text} />
-        <StatusBar style="auto" />
-        <Image source={FotoDeFondo2} resizeMode="contain" style={styles.image} />
-      </ImageBackground>
-    </View>
+        <View style={styles.rectangle}>
+          <Text>{'\n'}{'\n'}Tragos Disponibles:</Text>
+          <FlatlistTragos style={styles.text} />
+          <Text>{'\n'}{'\n'}</Text>
+          <StatusBar style="auto" />
+          <Text style={styles.negrita}>¿Qué trago quieres, nene?</Text>
+          <TextInput style={styles.input} placeholder="Trago a elegir..." onChangeText={handleTragoChange} value={trago}/>
+          
+        </View>
+      </SafeAreaView>
+    </ImageBackground>
   );
 }
 
@@ -26,24 +34,38 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     fontSize: 25,
     fontStyle: 'italic',
-    marginBottom: 10,
-    marginTop: 15,
+  },
+  text: {
+    fontSize: 15,
+  },
+  negrita: {
+    fontWeight: 'bold',
   },
   container: {
-    marginTop: 50,
     display: 'flex',
+    top: '1%',
+    margin: 20,
     flex: 1,
     width: 'center',
-    alignItems: 'left',
-    justifyContent: 'left',
+    alignItems: 'center',
   },
   backgroundImage: {
     flex: 1,
     width: '100%',
     height: '100%',
   },
-  image: {
-    width: '100%', // Adjust the width here, e.g., '100%' or a specific number like 300
-    height: '100%', // Adjust the height here, e.g., '100%' or a specific number like 200
+  input: {
+    height: '10%',
+    width: '86%',
+    borderWidth: 2,
+    backgroundColor: '#FFFFFF',
+    padding: 1,
+  },
+  rectangle: {
+    width: '86%',
+    height: '45%',
+    backgroundColor: 'rgba(256, 256, 256, 0.5)',
+    borderRadius: 10,
+    alignItems: 'center',
   },
 });
