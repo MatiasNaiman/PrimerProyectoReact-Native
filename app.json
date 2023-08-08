@@ -7,7 +7,7 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/Soteldo.png",
+      "image": "./assets/soteldo.png",
       "resizeMode": "contain",
       "backgroundColor": "#000000"
     },
